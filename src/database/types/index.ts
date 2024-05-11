@@ -1,0 +1,10 @@
+export enum USER_ROLES {
+    CONSUMER = 'CONSUMER',
+    ADMIN = 'ADMIN'
+}
+
+export enum TASK_STATUS {
+    PENDING = 'PENDING',
+    IN_PROGRESS = 'ADMIN',
+    COMPLETED = 'COMPLETED'
+}
