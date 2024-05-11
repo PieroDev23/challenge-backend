@@ -2,7 +2,7 @@ import { FindOptionsWhere, Repository } from "typeorm";
 import { BaseRepository } from "../../_lib/models/_base-repository.model";
 import { appDataSource } from "../data-source.database";
 import { User } from "../entities";
-import { logError } from "../../_lib";
+import { simpleLogger } from "../../_lib";
 
 export class UserRepository extends BaseRepository<User> {
     protected _repo: Repository<User> = appDataSource.getRepository(User);
@@ -17,15 +17,7 @@ export class UserRepository extends BaseRepository<User> {
             return user;
         } catch (error) {
 
-            if (error instanceof Error) {
-                logError({
-                    nameError: error.name,
-                    message: error.message,
-                    scopeName: this.findOneBy.name,
-                    error,
-                })
-            }
-
+            simpleLogger(error, this.findOneBy.name);
             return null;
         }
     }
@@ -41,16 +33,7 @@ export class UserRepository extends BaseRepository<User> {
         try {
             return await this._repo.save(args);
         } catch (error) {
-
-            if (error instanceof Error) {
-                logError({
-                    nameError: error.name,
-                    message: error.message,
-                    scopeName: this.save.name,
-                    error
-                })
-            }
-
+            simpleLogger(error, this.findOneBy.name);
             return null;
         }
 

@@ -1,4 +1,4 @@
-import { BaseController, TypedRequest, TypedResponse } from "../../../_lib";
+import { BaseController, TypedRequest, TypedResponse, simpleLogger } from "../../../_lib";
 import { BAD_CREDENTALS_MESSAGE, HTTP_CODE_OK, HTTP_CODE_UNAUTHORIZE, HTTP_MESSAGES } from "../../../constants";
 import { User } from "../../../database";
 import { AuthService, JWTService } from "../../services";
@@ -81,10 +81,7 @@ export class LoginController extends BaseController {
         } catch (error) {
             this.jsonResponse(res, this.serverErrorResponse);
             // console.log(`[Error Ocurring on ${LoginController.name} (ERROR NAME: ${name})]: ${message}`);
-            if (error instanceof Error) {
-                console.log(`[Error on ${RegisterController.name} ${error.name}]: `);
-                console.log(error.message);
-            }
+            simpleLogger(error, RegisterController.name);
         }
     }
 
