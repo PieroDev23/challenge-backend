@@ -7,10 +7,10 @@ export class User {
     @PrimaryGeneratedColumn('uuid', { name: 'user_id' })
     userId: string;
 
-    @Column({ type: 'varchar', name: 'first_name' })
+    @Column({ type: 'varchar', name: 'firstname' })
     firstname: string;
 
-    @Column({ type: 'varchar', name: 'last_name' })
+    @Column({ type: 'varchar', name: 'lastname' })
     lastname: string;
 
     @Column('varchar')

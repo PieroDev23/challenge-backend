@@ -41,7 +41,7 @@ export class AuthService {
      * @param userRegisterRequest user register request 
      * @returns {User | null} user entity or null
      */
-    async registerUser(userRequest: RegisterRequest): Promise<User | null> {
+    async createUser(userRequest: RegisterRequest): Promise<User | null> {
         const userRepo = new UserRepository();
         const user = userRepo.create(userRequest);
 

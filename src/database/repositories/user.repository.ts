@@ -34,7 +34,6 @@ export class UserRepository extends BaseRepository<User> {
 
     create(args: Partial<User>): User {
         const user = this._repo.create(args);
-
         return user;
     }
 

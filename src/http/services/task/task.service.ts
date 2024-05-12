@@ -1,5 +1,5 @@
 import { useService } from "../../../_lib";
-import { Project, TASK_STATUS, Task, TaskRepository, User } from "../../../database";
+import { Project, ProjectRepository, TASK_STATUS, Task, TaskRepository, User } from "../../../database";
 import { UserService } from '../user';
 
 export type NewTask = {
@@ -10,6 +10,7 @@ export type NewTask = {
 }
 
 export class TaskService {
+
 
     async createTask({ title, description, asignees, project }: NewTask) {
         const taskRepo = new TaskRepository();

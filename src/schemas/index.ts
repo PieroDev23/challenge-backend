@@ -93,3 +93,7 @@ export const UpdateTaskRequestSchema = z.object({
     status: StatusSchema,
     idProject: z.string().uuid()
 });
+
+export const GetProjectsRequest = z.object({
+    
+});

@@ -1,8 +1,7 @@
 import { BaseRouter } from "../../_lib";
 import { CreateTaskController, UpdateTaskController } from "../controllers";
-import { validateJWT, validateUserAdminRole, validateCreateTaskRequestSchema, validateUpdateTaskSchema } from "../middlewares";
-import { UserService, TaskService, ProjectService } from "../services";
-
+import { validateCreateTaskRequestSchema, validateJWT, validateUpdateTaskSchema, validateUserAdminRole } from "../middlewares";
+import { ProjectService, TaskService, UserService } from "../services";
 
 export class TaskRouter extends BaseRouter {
     public path: string = 'task';
@@ -20,15 +19,23 @@ export class TaskRouter extends BaseRouter {
                     validateUserAdminRole,
                     validateCreateTaskRequestSchema
                 ],
-                services: [UserService, TaskService, ProjectService]
+                services: [
+                    UserService,
+                    TaskService,
+                    ProjectService
+                ]
             },
             {
-                path: 'update/:id',
+                path: 'update/:idTask',
                 method: 'put',
                 controller: UpdateTaskController,
-                middlewares: [validateUpdateTaskSchema],
+                middlewares: [
+                    validateJWT,
+                    validateUpdateTaskSchema
+                ],
                 services: [TaskService]
-            }
+            },
+
         ];
     }
 }

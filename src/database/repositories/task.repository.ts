@@ -21,7 +21,6 @@ export class TaskRepository extends BaseRepository<Task> {
         }
     }
 
-
     create(args: Partial<Task>): Task {
         return this._repo.create(args);
     }

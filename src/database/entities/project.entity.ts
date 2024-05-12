@@ -9,7 +9,7 @@ export class Project {
     idProject: string;
 
     @Column('varchar')
-    title: string;
+    name: string;
 
     @ManyToOne((type) => User, { eager: true })
     @JoinColumn({ name: 'created_by_user' })

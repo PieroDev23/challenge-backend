@@ -49,7 +49,7 @@ export class CreateProjectController extends BaseController {
             }
 
             // preparing for creating the project
-            const newProject = { members, title: body.titleProject, createdBy: manager.userId };
+            const newProject = { members, name: body.titleProject, createdBy: manager.userId };
 
             // creating the project and saving it
             const project = await this._ps.createProject(newProject);

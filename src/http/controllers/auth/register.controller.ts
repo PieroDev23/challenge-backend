@@ -45,7 +45,7 @@ export class RegisterController extends BaseController {
                 });
             }
 
-            const newUser = await this._as.registerUser(userRequestBody);
+            const newUser = await this._as.createUser(userRequestBody);
 
             if (!newUser) {
                 return this.jsonResponse(res, this.serverErrorResponse);
