@@ -11,8 +11,13 @@ export class ProjectRepository extends BaseRepository<Project> {
 
     _repo: Repository<Project> = appDataSource.getRepository(Project);
 
-    findOneBy(args: FindOptionsWhere<Project>): Promise<Project | null> {
-        throw new Error("Method not implemented.");
+    async findOneBy(args: FindOptionsWhere<Project>): Promise<Project | null> {
+        try {
+            return await this._repo.findOneBy({ ...args });
+        } catch (error) {
+            simpleLogger(error, this.findOneBy.name);
+            return null
+        }
     }
 
     create(args: Partial<Project>): Project {

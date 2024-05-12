@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { EMAIL_VALIDATION_MESSAGE, INVALID_ROLE_MESSAGE } from '../constants';
-import { USER_ROLES } from '../database';
+import { EMAIL_VALIDATION_MESSAGE, INVALID_ROLE_MESSAGE, INVALID_STATUS_MESSAGE } from '../constants';
+import { TASK_STATUS, USER_ROLES } from '../database';
 
 
 /**
@@ -11,6 +11,22 @@ export const UserRoleSchema = z.nativeEnum(USER_ROLES, {
     errorMap: (issue, _ctx) => {
         // mapping the errors
         const messageObj = { message: INVALID_ROLE_MESSAGE };
+
+        const codes: { [k: string]: { message: string; } } = {
+            'invalid_type': { ...messageObj },
+            'invalid_enum_value': { ...messageObj },
+            'default': { ...messageObj }
+        }
+
+        return codes[issue.code] || {}
+    }
+})
+
+
+export const StatusSchema = z.nativeEnum(TASK_STATUS, {
+    errorMap: (issue, _ctx) => {
+        // mapping the errors
+        const messageObj = { message: INVALID_STATUS_MESSAGE };
 
         const codes: { [k: string]: { message: string; } } = {
             'invalid_type': { ...messageObj },
@@ -63,4 +79,17 @@ export const CreateProjectRequestSchema = z.object({
     titleProject: z.string().min(1),
 });
 
+/**
+ * ::::::::::::::::::: TASK SCHEMAS ::::::::::::::::::: 
+*/
+export const CreateTaskRequestSchema = z.object({
+    projectId: z.string().uuid(),
+    title: z.string().min(3),
+    description: z.string().max(100),
+    asignees: z.array(z.string().uuid()).nonempty()
+});
 
+export const UpdateTaskRequestSchema = z.object({
+    status: StatusSchema,
+    idProject: z.string().uuid()
+});

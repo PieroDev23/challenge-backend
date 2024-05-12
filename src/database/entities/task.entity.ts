@@ -23,7 +23,7 @@ export class Task {
         joinColumn: { name: 'task_id' },
         inverseJoinColumn: { name: 'user_id' }
     })
-    users: User[];
+    asignees: User[];
 
     @ManyToOne((type) => Project, (project) => project.tasks, { nullable: false })
     @JoinColumn({ name: 'project_id' })

@@ -1,7 +1,5 @@
-import { useService } from "../../../_lib";
-import { Project, Task, USER_ROLES, User } from "../../../database";
+import { Project, USER_ROLES, User } from "../../../database";
 import { ProjectRepository } from "../../../database/repositories/project.repository";
-import { UserService } from "../user";
 
 
 export type NewProject = {
@@ -22,6 +20,12 @@ export type ProjectFormatted = {
 
 
 export class ProjectService {
+
+    async findProjectById(id: string) {
+        const projectRepo = new ProjectRepository();
+        return await projectRepo.findOneBy({ idProject: id })
+    }
+
 
     async createProject({ title, members, createdBy }: NewProject) {
         const projectRepo = new ProjectRepository();

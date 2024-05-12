@@ -1,4 +1,4 @@
-import { Column, Entity, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from "typeorm";
 import { Task } from "./task.entity";
 import { User } from "./user.entity";
 
@@ -11,7 +11,7 @@ export class Project {
     @Column('varchar')
     title: string;
 
-    @OneToOne((type) => User, { eager: true, cascade: true })
+    @ManyToOne((type) => User, { eager: true })
     @JoinColumn({ name: 'created_by_user' })
     createdBy: string;
 

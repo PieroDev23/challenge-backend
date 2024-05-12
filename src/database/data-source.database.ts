@@ -12,6 +12,7 @@ const options: DataSourceOptions = {
     database: DB_NAME,
     password: DB_PASSWORD,
     synchronize: true,
+    // logging: true,
     // migrations: ['./src/database/migrations/*{.ts,.js}'],
     entities: ['./src/database/entities/*.entity{.ts,.js}'],
 }

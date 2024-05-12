@@ -22,6 +22,7 @@ export const HTTP_MESSAGES = {
 };
 
 export const INVALID_ROLE_MESSAGE = 'Invalid role, must be ADMIN or CONSUMER';
+export const INVALID_STATUS_MESSAGE = 'Invalid role, must be PENDING or IN PROGRESS or COMPLETED';
 export const NOT_ENOUGH_MEMBERS_ON_PROJECT_MESSAGE = 'No members findend. Projects need to have at least one person in addition to the administrator.';
 
 /**

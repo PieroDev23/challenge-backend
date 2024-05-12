@@ -60,7 +60,7 @@ export class CreateProjectController extends BaseController {
 
             // processing the project members
             const projectFormatted = this._ps.formatProject(project);
-
+            
             this.jsonResponse(res, {
                 code: HTTP_CODE_OK,
                 response: {

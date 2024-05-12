@@ -1,6 +1,6 @@
 import { API_VERSION } from "./constants";
 import { RoutesProvider } from "./_lib";
-import { AuthRouter, ProjectRouter } from "./http";
+import { AuthRouter, ProjectRouter, TaskRouter } from "./http";
 
 
 
@@ -12,7 +12,8 @@ export class AppRouting extends RoutesProvider {
 
         this.routers = [
             AuthRouter,
-            ProjectRouter
+            ProjectRouter,
+            TaskRouter
         ]
     }
 }

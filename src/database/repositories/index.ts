@@ -1,2 +1,3 @@
 export { ProjectRepository } from './project.repository';
 export { UserRepository } from './user.repository';
+export { TaskRepository } from './task.repository';

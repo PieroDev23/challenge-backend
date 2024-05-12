@@ -6,7 +6,7 @@ export class JWTService {
 
     genJWT(data: User): string {
         const { APP_JWT_SECRET } = process.env;
-        return jwt.sign({ ...data }, APP_JWT_SECRET!, { expiresIn: '1h' });
+        return jwt.sign({ ...data }, APP_JWT_SECRET!, { expiresIn: '2 days' });
     }
 
     verifyJWT(token: string, handler: VerifyCallback) {

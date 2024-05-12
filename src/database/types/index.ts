@@ -5,6 +5,6 @@ export enum USER_ROLES {
 
 export enum TASK_STATUS {
     PENDING = 'PENDING',
-    IN_PROGRESS = 'ADMIN',
+    IN_PROGRESS = 'IN_PROGRESS',
     COMPLETED = 'COMPLETED'
 }
