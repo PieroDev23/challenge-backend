@@ -31,6 +31,8 @@ export class AuthService {
      * @returns {Boolean} boolean result
      */
     comparePasswords(incomingPassword: string, savedPassword: string): boolean {
+        console.log({ incomingPassword, savedPassword });
+
         return bcrypt.compareSync(incomingPassword, savedPassword);
     }
 

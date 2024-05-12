@@ -8,7 +8,7 @@ import { FindOptionsWhere, ObjectLiteral, Repository } from "typeorm";
  */
 export abstract class BaseRepository<T extends ObjectLiteral> {
 
-    
+    abstract _repo: Repository<T>;
     /**
      * find one entity by conditions
      * @param args {FindOptionsWhere} conditions

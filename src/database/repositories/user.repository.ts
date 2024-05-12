@@ -1,14 +1,24 @@
-import { FindOptionsWhere, Repository } from "typeorm";
+import { FindManyOptions, FindOptionsWhere, In, KeysOfAType, Repository } from "typeorm";
 import { BaseRepository } from "../../_lib/models/_base-repository.model";
 import { appDataSource } from "../data-source.database";
 import { User } from "../entities";
 import { simpleLogger } from "../../_lib";
 
 export class UserRepository extends BaseRepository<User> {
-    protected _repo: Repository<User> = appDataSource.getRepository(User);
+    _repo: Repository<User> = appDataSource.getRepository(User);
 
     constructor() {
         super();
+    }
+
+    async findIn(args: { prop: keyof Omit<User, 'hashPassword'>, values: any[] }) {
+        try {
+            const users = await this._repo.findBy({ [args.prop]: In(args.values) });
+            return users;
+        } catch (error) {
+            simpleLogger(error, this.findIn.name);
+            return []
+        }
     }
 
     async findOneBy(args: FindOptionsWhere<User>): Promise<User | null> {
@@ -24,7 +34,6 @@ export class UserRepository extends BaseRepository<User> {
 
     create(args: Partial<User>): User {
         const user = this._repo.create(args);
-        user.hashPassword();
 
         return user;
     }

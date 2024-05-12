@@ -1,6 +1,7 @@
 import { BaseRouter } from "../../_lib";
 import { AUTH_PATH } from "../../constants";
-import { RegisterController } from "../controllers";
+import { LoginController, RegisterController } from "../controllers";
+import { validateLoginSchema, validateRegisterSchema } from "../middlewares";
 import { AuthService, JWTService } from "../services";
 
 
@@ -16,9 +17,16 @@ export class AuthRouter extends BaseRouter {
                 path: 'register',
                 method: 'post',
                 controller: RegisterController,
-                // middlewares: [loginMiddlware],
+                middlewares: [validateRegisterSchema],
                 services: [AuthService, JWTService]
             },
+            {
+                path: 'login',
+                method: 'post',
+                controller: LoginController,
+                middlewares: [validateLoginSchema],
+                services: [AuthService, JWTService]
+            }
         ];
     }
 

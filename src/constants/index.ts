@@ -21,11 +21,14 @@ export const HTTP_MESSAGES = {
     500: 'server its down!'
 };
 
+export const INVALID_ROLE_MESSAGE = 'Invalid role, must be ADMIN or CONSUMER';
+export const NOT_ENOUGH_MEMBERS_ON_PROJECT_MESSAGE = 'No members findend. Projects need to have at least one person in addition to the administrator.';
+
 /**
  * 
  *  :::::::::::::::::::: APP CONSTANTS :::::::::::::::::::: 
  * 
  */
-
 export const API_VERSION = 'v1';
 export const AUTH_PATH = 'auth';
+export const PROJECT_PATH = 'project';

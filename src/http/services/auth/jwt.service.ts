@@ -1,11 +1,17 @@
-import jwt from 'jsonwebtoken';
+import jwt, { DecodeOptions, JsonWebTokenError, VerifyCallback, VerifyOptions } from 'jsonwebtoken';
+import { User } from '../../../database';
 
 
 export class JWTService {
 
-    genJWT(data: any): string {
+    genJWT(data: User): string {
         const { APP_JWT_SECRET } = process.env;
         return jwt.sign({ ...data }, APP_JWT_SECRET!, { expiresIn: '1h' });
+    }
+
+    verifyJWT(token: string, handler: VerifyCallback) {
+        const { APP_JWT_SECRET } = process.env;
+        jwt.verify(token, APP_JWT_SECRET!, handler);
     }
 
 }

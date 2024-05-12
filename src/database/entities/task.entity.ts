@@ -5,7 +5,7 @@ import { Project } from "./project.entity";
 
 @Entity({ name: 'tasks' })
 export class Task {
-    @PrimaryGeneratedColumn('uuid', { name: 'user_id' })
+    @PrimaryGeneratedColumn('uuid', { name: 'task_id' })
     idTask: string;
 
     @Column('varchar')

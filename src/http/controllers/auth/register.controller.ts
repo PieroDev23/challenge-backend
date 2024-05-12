@@ -1,6 +1,8 @@
+import { z } from 'zod';
 import { BaseController, TypedRequest, TypedResponse, simpleLogger } from "../../../_lib";
 import { EMAIL_ALREADY_EXISTS_MESSAGE, HTTP_CODE_CLIENT_ERROR, HTTP_CODE_OK, HTTP_MESSAGES } from "../../../constants";
-import { USER_ROLES, User } from "../../../database";
+import { User } from "../../../database";
+import { RegisterRequestSchema } from "../../../schemas";
 import { AuthService, JWTService } from "../../services/auth";
 
 
@@ -8,13 +10,7 @@ import { AuthService, JWTService } from "../../services/auth";
  * @type
  * Type of the Body coming from the frontend
  */
-export type RegisterRequest = {
-    firstname: string;
-    lastname: string;
-    password: string;
-    email: string;
-    role: USER_ROLES
-}
+export type RegisterRequest = z.infer<typeof RegisterRequestSchema>;
 
 /**
  * @type
@@ -23,7 +19,7 @@ export type RegisterRequest = {
 export type RegisterResponse = {
     data: {
         token: string;
-        user: Omit<User, 'createdAt' | 'updatedAt' | 'hashPassword'>
+        user: Omit<User, 'createdAt' | 'updatedAt' | 'hashPassword' | 'password'>
     } | null
 }
 
@@ -55,9 +51,9 @@ export class RegisterController extends BaseController {
                 return this.jsonResponse(res, this.serverErrorResponse);
             }
 
-            const { createdAt, updatedAt, ...rest } = newUser;
+            const { createdAt, updatedAt, password, ...rest } = newUser;
 
-            const jwt = this._jwt.genJWT(user);
+            const jwt = this._jwt.genJWT(newUser);
 
             this.jsonResponse(res, {
                 code: HTTP_CODE_OK,

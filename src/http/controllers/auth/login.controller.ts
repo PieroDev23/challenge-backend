@@ -1,6 +1,8 @@
+import { z } from "zod";
 import { BaseController, TypedRequest, TypedResponse, simpleLogger } from "../../../_lib";
 import { BAD_CREDENTALS_MESSAGE, HTTP_CODE_OK, HTTP_CODE_UNAUTHORIZE, HTTP_MESSAGES } from "../../../constants";
 import { User } from "../../../database";
+import { LoginRequestSchema } from "../../../schemas";
 import { AuthService, JWTService } from "../../services";
 import { RegisterController } from "./register.controller";
 
@@ -9,10 +11,7 @@ import { RegisterController } from "./register.controller";
  * @type
  * Type of the Body coming from the frontend
  */
-export type LoginRequest = {
-    email: string;
-    password: string;
-}
+export type LoginRequest = z.infer<typeof LoginRequestSchema>
 
 /**
  * @type
@@ -21,15 +20,15 @@ export type LoginRequest = {
 export type LoginResponse = {
     data: {
         token: string;
-        user: Omit<User, 'createdAt' | 'updatedAt' | 'hashPassword'>
+        user: Omit<User, 'createdAt' | 'updatedAt' | 'hashPassword' | 'password'>
     } | null
 }
 export class LoginController extends BaseController {
 
 
     constructor(
+        private _as: AuthService,
         private _jwts: JWTService,
-        private _as: AuthService
     ) {
         super();
     }
@@ -50,9 +49,9 @@ export class LoginController extends BaseController {
                 })
             }
 
-            const { createdAt, updatedAt, ...restUser } = user;
+            const { createdAt, updatedAt, password: userPassword, ...restUser } = user;
 
-            const passwordMatch = this._as.comparePasswords(password, user.password);
+            const passwordMatch = this._as.comparePasswords(password, userPassword);
             if (!passwordMatch) {
                 return this.jsonResponse(res, {
                     code: HTTP_CODE_UNAUTHORIZE,
@@ -80,8 +79,7 @@ export class LoginController extends BaseController {
 
         } catch (error) {
             this.jsonResponse(res, this.serverErrorResponse);
-            // console.log(`[Error Ocurring on ${LoginController.name} (ERROR NAME: ${name})]: ${message}`);
-            simpleLogger(error, RegisterController.name);
+            simpleLogger(error, LoginController.name);
         }
     }
 

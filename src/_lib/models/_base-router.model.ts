@@ -8,11 +8,12 @@ import { Singleton } from "../helpers";
  * @abstract
  * @class
  * Base model for my subclasess Routers
+ * use the setter method "set routes" for setting the routes
  */
 export abstract class BaseRouter {
 
     public _router: Router;
-    public path: string;
+    abstract path: string;
     private _routes: RouteObject[] = [];
 
     constructor() {
@@ -31,7 +32,10 @@ export abstract class BaseRouter {
             let c: BaseController;
             // if we heve some services we inject those services
             if (services && services.length >= 1) {
-                const Services = services.map(Service => Singleton.getInstance(Service));
+                const Services = services.map(Service => new Service());
+
+                // console.log(Services);
+
                 c = new Controller(...Services);
             } else {
                 c = new Controller();
@@ -41,9 +45,9 @@ export abstract class BaseRouter {
             const controllerWrapper = (req: Request, res: Response) => {
                 c.execute(req, res);
             }
-
             // creating the route
             this._router[method](`/${path}`, middlewares || [], controllerWrapper);
+
         });
     }
 
