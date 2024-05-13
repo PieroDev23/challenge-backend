@@ -22,7 +22,6 @@ export const validateJWT = async (req: Request, res: Response, next: NextFunctio
     _jwts.verifyJWT(token, (err, decoded) => {
 
         if (err) {
-            console.log('llega aqui')
             return res.status(HTTP_CODE_UNAUTHORIZE).json({
                 ok: false,
                 message: HTTP_MESSAGES[HTTP_CODE_UNAUTHORIZE],

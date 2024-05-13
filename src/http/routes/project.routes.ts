@@ -1,6 +1,6 @@
 import { BaseRouter } from "../../_lib";
 import { PROJECT_PATH } from "../../constants";
-import { CreateProjectController, GetProjectTasksController, GetProjectsController } from "../controllers";
+import { CreateProjectController, GetProjectInfoController, GetProjectTasksController, GetProjectsController } from "../controllers";
 import { validateCreateProjectSchema, validateJWT, validateUserAdminRole } from "../middlewares";
 import { ProjectService, UserService } from "../services";
 
@@ -13,6 +13,13 @@ export class ProjectRouter extends BaseRouter {
         super();
 
         this.routes = [
+            {
+                path: ':idProject/info',
+                method: 'get',
+                controller: GetProjectInfoController,
+                middlewares: [validateJWT],
+                services: [ProjectService]
+            },
             {
                 path: 'create',
                 method: 'post',

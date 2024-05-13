@@ -1,6 +1,6 @@
 import { BaseRouter } from "../../_lib";
 import { AUTH_PATH } from "../../constants";
-import { LoginController, RegisterController } from "../controllers";
+import { CheckJWTController, LoginController, RegisterController } from "../controllers";
 import { validateLoginSchema, validateRegisterSchema } from "../middlewares";
 import { AuthService, JWTService } from "../services";
 
@@ -13,6 +13,12 @@ export class AuthRouter extends BaseRouter {
         super();
 
         this.routes = [
+            {
+                path: 'check-token',
+                method: 'get',
+                controller: CheckJWTController,
+                services: [JWTService]
+            },
             {
                 path: 'register',
                 method: 'post',

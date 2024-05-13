@@ -48,7 +48,6 @@ export const RegisterRequestSchema = z.object({
     password: z.string().min(1),
     lastname: z.string().min(3),
     firstname: z.string().min(3),
-    role: UserRoleSchema
 });
 
 export const LoginRequestSchema = z.object({

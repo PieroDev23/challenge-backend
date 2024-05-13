@@ -7,11 +7,13 @@ import { TaskService } from "../task";
 export type NewProject = {
     members: User[];
     name: string;
-    createdBy: string;
+    createdBy: User;
 }
 
 export type ProjectFormatted = {
     name: string;
+    idProject: string;
+    createdBy: Partial<User>;
     members: {
         firstname: string;
         lastname: string;
@@ -57,9 +59,12 @@ export class ProjectService {
     }
 
     formatProject(project: Project): ProjectFormatted {
-        const { name, members } = project;
+        const { name, members, idProject, createdBy, tasks } = project;
+        const { password, createdAt, updatedAt, ...rest } = createdBy;
         return {
             name,
+            idProject,
+            createdBy: rest,
             members: members.map(({ firstname, lastname, email, role, userId }) => ({
                 id: userId,
                 firstname,

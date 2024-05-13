@@ -13,7 +13,7 @@ export class Project {
 
     @ManyToOne((type) => User, { eager: true })
     @JoinColumn({ name: 'created_by_user' })
-    createdBy: string;
+    createdBy: User;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', name: 'created_at' })
     createdAt: Date;

@@ -1,5 +1,5 @@
 import { BaseRouter } from "../../_lib";
-import { CreateTaskController, UpdateTaskController } from "../controllers";
+import { CreateTaskController, GetTaskInfoController, UpdateTaskController } from "../controllers";
 import { validateCreateTaskRequestSchema, validateJWT, validateUpdateTaskSchema, validateUserAdminRole } from "../middlewares";
 import { ProjectService, TaskService, UserService } from "../services";
 
@@ -10,6 +10,15 @@ export class TaskRouter extends BaseRouter {
         super();
 
         this.routes = [
+            {
+                path: ':idTask/info',
+                method: 'get',
+                controller: GetTaskInfoController,
+                middlewares: [
+                    validateJWT
+                ],
+                services: [TaskService]
+            },
             {
                 path: 'create',
                 method: 'post',
