@@ -4,7 +4,6 @@ import { BAD_CREDENTALS_MESSAGE, HTTP_CODE_OK, HTTP_CODE_UNAUTHORIZE, HTTP_MESSA
 import { User } from "../../../database";
 import { LoginRequestSchema } from "../../../schemas";
 import { AuthService, JWTService } from "../../services";
-import { RegisterController } from "./register.controller";
 
 
 /**
@@ -36,6 +35,7 @@ export class LoginController extends BaseController {
     protected async response(req: TypedRequest<LoginRequest>, res: TypedResponse<LoginResponse>) {
         try {
             const { password, email } = req.body;
+           
             const user = await this._as.verifyUserEmail(email);
 
             if (!user) {

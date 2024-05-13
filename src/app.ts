@@ -2,7 +2,7 @@ import cors from 'cors';
 import 'dotenv/config';
 import express, { Express } from 'express';
 import morgan from 'morgan';
-import { BaseExpressApp, DatabaseConnector } from './_lib/';
+import { BaseExpressApp, DatabaseConnector, createAdminUser } from './_lib/';
 import { AppRouting } from './app-routing';
 import { appDataSource } from './database';
 
@@ -27,6 +27,7 @@ export class ChallengeApp implements BaseExpressApp, DatabaseConnector {
     async dbConnection(): Promise<void> {
         try {
             await appDataSource.initialize();
+            await createAdminUser();
             console.log('🐸✨ Database successfully connected');
         } catch (error) {
             if (error instanceof Error) {

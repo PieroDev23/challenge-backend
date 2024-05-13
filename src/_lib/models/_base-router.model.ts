@@ -34,8 +34,6 @@ export abstract class BaseRouter {
             if (services && services.length >= 1) {
                 const Services = services.map(Service => new Service());
 
-                // console.log(Services);
-
                 c = new Controller(...Services);
             } else {
                 c = new Controller();

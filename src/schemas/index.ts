@@ -74,7 +74,7 @@ const UserSchema = z.object({
 
 
 export const CreateProjectRequestSchema = z.object({
-    consumersIds: z.array(z.string().uuid()).nonempty(),
+    consumersIds: z.array(z.string()).nonempty(),
     titleProject: z.string().min(1),
 });
 

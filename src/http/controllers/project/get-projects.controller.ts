@@ -18,8 +18,6 @@ export class GetProjectsController extends BaseController {
             const allProjects = await this._ps.getAllProjects();
             const projects = this._ps.getProjectsById(user, allProjects);
 
-            console.log({ projects });
-
             this.jsonResponse(res, {
                 code: HTTP_CODE_OK, response: {
                     ok: true,

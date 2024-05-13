@@ -6,7 +6,6 @@ import { HTTP_CODE_CLIENT_ERROR } from "../../../constants";
 
 
 export const validateUpdateTaskSchema = (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.body);
     const errors = parseZodSchema(UpdateTaskRequestSchema, req.body);
 
     if (errors) {
