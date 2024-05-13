@@ -40,25 +40,25 @@ Te deberá de aparecer los siguientes mensajes en la terminal.
 
 ```
 ├── src
-│   ├── _lib                                                 # clases de utilidad, abstracciones y helpers.
-│   │   ├── helpers                                          # abstracciones para mis routers, controllers, servicies, etc.
+│   ├── _lib                                    # clases de utilidad, abstracciones y helpers.
+│   │   ├── helpers                             # abstracciones para mis routers, controllers, servicies, etc.
 │   │   └── models                                           
-│   ├── constants                                            # constantes 
+│   ├── constants                               # constantes 
 │   └── database
-│   │   ├── entities                                         # entidades que representan tablas en mi base de datos
-│   │   ├── repositories                                     # repositorios que interactuan directamente con la base de datos
-│   │   ├── types                                            # utilidades de tipado
-│   │   └── data-source.database.ts                          # configuracion de la conexión a mi base de datos
+│   │   ├── entities                            # entidades que representan tablas en mi base de datos
+│   │   ├── repositories                        # repositorios que interactuan directamente con la base de datos
+│   │   ├── types                               # utilidades de tipado
+│   │   └── data-source.database.ts             # configuracion de la conexión a mi base de datos
 │   ├── http                                                 
-│   │   ├── controllers                                      # controladores de la aplicación
-│   │   ├── middlewares                                      # middlewares de la aplicación
-│   │   ├── routes                                           # routes de la aplicación
-│   │   └── services                                         # servicios de la aplicación que interactuan con controllers y repos
-│   ├── schemas                                              # zod schemas
-│   ├── app-routing.ts                                       # router manager
-│   ├── app.ts                                               # clase principal de mi aplicación
-│   ├── index.ts                                             # punto de entrada de mi aplicación (boot)
-├── .env.example                                             # variables de entorno (copiar y borrar el .example)
+│   │   ├── controllers                         # controladores de la aplicación
+│   │   ├── middlewares                         # middlewares de la aplicación
+│   │   ├── routes                              # routes de la aplicación
+│   │   └── services                            # servicios de la aplicación que interactuan con controllers y repos
+│   ├── schemas                                 # zod schemas
+│   ├── app-routing.ts                          # router manager
+│   ├── app.ts                                  # clase principal de mi aplicación
+│   ├── index.ts                                # punto de entrada de mi aplicación (boot)
+├── .env.example                                # variables de entorno (copiar y borrar el .example)
 ├── .gitignore                                           
 ├── package.json
 └── README.md
