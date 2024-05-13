@@ -82,7 +82,7 @@ export const CreateProjectRequestSchema = z.object({
  * ::::::::::::::::::: TASK SCHEMAS ::::::::::::::::::: 
 */
 export const CreateTaskRequestSchema = z.object({
-    projectId: z.string().uuid(),
+    idProject: z.string().uuid(),
     title: z.string().min(3),
     description: z.string().max(100),
     asignees: z.array(z.string().uuid()).nonempty()

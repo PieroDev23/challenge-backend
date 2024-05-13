@@ -15,7 +15,7 @@ export class GetProjectTasksController extends BaseController {
         try {
             const idProject = req.params.idProject;
             const tasks = await this._ps.getProjectTasks(idProject);
-
+            
             if (tasks.length === 0) {
                 return this.jsonResponse(res, {
                     code: HTTP_CODE_OK,

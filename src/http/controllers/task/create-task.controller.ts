@@ -32,8 +32,8 @@ export class CreateTaskController extends BaseController {
                     }
                 })
             }
-
-            const project = await this._ps.findProjectById(body.projectId);
+            
+            const project = await this._ps.findProjectById(body.idProject);
 
             if (!project) {
                 return this.jsonResponse(res, {

@@ -10,6 +10,8 @@ export class JWTService {
     }
 
     verifyJWT(token: string, handler: VerifyCallback) {
+        console.log(token);
+
         const { APP_JWT_SECRET } = process.env;
         jwt.verify(token, APP_JWT_SECRET!, handler);
     }
