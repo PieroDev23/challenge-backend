@@ -3,6 +3,17 @@
 
 Challenge delfosti parte Backend 🚀
 
+## Dependencias
+
+- Typescript (lenguaje de programación)
+- Express (Librería para crear APIS REST)
+- zod (creació de esquemas para validar datos)
+- typeorm (orm para manejar bases de datos realcionales y no relacionales)
+- morgan (logs de respuestas HTTP)
+- jsonwebtoken (librería para la implementación de autenticación JWT)
+- bcryptjs (librer´ía para encriptar datos lo uso para las contraseñas)
+- cors (librería para políticas CORS)
+- dotenv (librería para el manejo de variables de entorno)
 
 ## Environment Variables
 
