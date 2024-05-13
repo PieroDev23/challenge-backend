@@ -11,6 +11,13 @@ export type UserFromatted = {
 }
 
 export class UserService {
+
+    async getAllUsers() {
+        const userRepo = new UserRepository();
+        const users = await userRepo.getAll();
+        return this.formatUsers(users)
+    }
+
     async findUserById(id: string) {
         const userRepo = new UserRepository();
         const user = await userRepo.findOneBy({ userId: id });

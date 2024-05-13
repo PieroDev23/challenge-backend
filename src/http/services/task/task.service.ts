@@ -32,6 +32,7 @@ export class TaskService {
     async updateStatus(task: Task, status: TASK_STATUS) {
         const taskRepo = new TaskRepository();
         task.status = status;
+        console.log('task updated', task);
         return await taskRepo.save(task);
     }
 

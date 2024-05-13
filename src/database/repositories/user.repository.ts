@@ -11,6 +11,11 @@ export class UserRepository extends BaseRepository<User> {
         super();
     }
 
+
+    async getAll() {
+        return await this._repo.find();
+    }
+
     async findIn(args: { prop: keyof Omit<User, 'hashPassword'>, values: any[] }) {
         try {
             const users = await this._repo.findBy({ [args.prop]: In(args.values) });

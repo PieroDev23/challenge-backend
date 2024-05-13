@@ -1,0 +1,1 @@
+export { GetAllUsersController } from './get-all-users.controller';

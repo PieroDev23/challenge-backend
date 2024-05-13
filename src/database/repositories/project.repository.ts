@@ -17,7 +17,7 @@ export class ProjectRepository extends BaseRepository<Project> {
             .innerJoinAndSelect("project.createdBy", "manager")
             .select([
                 "project.idProject",
-                "project.title",
+                "project.name",
                 "users.userId",
                 "users.firstname",
                 "users.lastname",

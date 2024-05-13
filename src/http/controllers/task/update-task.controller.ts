@@ -17,7 +17,7 @@ export class UpdateTaskController extends BaseController {
     protected async response(req: TypedRequest<UpdateTaskRequest>, res: Response): Promise<any> {
 
         try {
-            const idTask = req.query.idTask;
+            const idTask = req.params.idTask;
             // search the task and updated it
             const task = await this._ts.findTaskById(idTask);
 
