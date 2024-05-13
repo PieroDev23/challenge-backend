@@ -7,7 +7,7 @@ Challenge delfosti parte Backend 🚀
 
 - Typescript (lenguaje de programación)
 - Express (Librería para crear APIS REST)
-- zod (creació de esquemas para validar datos)
+- zod (creación de esquemas para validar datos)
 - typeorm (orm para manejar bases de datos realcionales y no relacionales)
 - morgan (logs de respuestas HTTP)
 - jsonwebtoken (librería para la implementación de autenticación JWT)
